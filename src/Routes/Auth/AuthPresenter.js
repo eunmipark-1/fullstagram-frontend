@@ -10,6 +10,7 @@ const Wrapper = styled.div`
 	justify-content: center;
 	flex-direction: column;
 `;
+
 const Box = styled.div`
 	${(props) => props.theme.whiteBox}
 	border-radius:0px;
@@ -19,7 +20,7 @@ const Box = styled.div`
 
 const StateChanger = styled(Box)`
 	text-align: center;
-	padding: 20px 20px;
+	padding: 20px 0px;
 `;
 
 const Link = styled.span`
@@ -31,15 +32,17 @@ const Form = styled(Box)`
 	padding: 40px;
 	padding-bottom: 30px;
 	margin-bottom: 15px;
-	width: 100%;
-	input {
+	form {
 		width: 100%;
-		&:not(:last-child) {
-			margin-bottom: 7px;
+		input {
+			width: 100%;
+			&:not(:last-child) {
+				margin-bottom: 7px;
+			}
 		}
-	}
-	button {
-		margin-top: 10px;
+		button {
+			margin-top: 10px;
+		}
 	}
 `;
 
@@ -49,7 +52,7 @@ export default ({ action, username, firstName, lastName, email, setAction, onLog
 			{action === 'logIn' ? (
 				<form onSubmit={onLogin}>
 					<Input placeholder={'Email'} {...email} type="email" />
-					<Button text={'Log In'} />
+					<Button text={'Log in'} />
 				</form>
 			) : (
 				<form onSubmit={onLogin}>
@@ -57,19 +60,18 @@ export default ({ action, username, firstName, lastName, email, setAction, onLog
 					<Input placeholder={'Last name'} {...lastName} />
 					<Input placeholder={'Email'} {...email} type="email" />
 					<Input placeholder={'Username'} {...username} />
-
-					<Button text={'Sign Up'} />
+					<Button text={'Sign up'} />
 				</form>
 			)}
 		</Form>
 		<StateChanger>
 			{action === 'logIn' ? (
 				<>
-					Don't have an account? <Link onClick={() => setAction('signUp')}>Sign Up</Link>
+					Don't have an account? <Link onClick={() => setAction('signUp')}>Sign up</Link>
 				</>
 			) : (
 				<>
-					Have an account? <Link onClick={() => setAction('logIn')}>Log In</Link>
+					Have an account? <Link onClick={() => setAction('logIn')}>Log in</Link>
 				</>
 			)}
 		</StateChanger>
