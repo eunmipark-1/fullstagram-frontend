@@ -7,19 +7,13 @@ export const LOG_IN = gql`
 `;
 
 export const CREATE_ACCOUNT = gql`
-	mutation createAccount(){
-		createAccount (
-			$username: String!
-			$firstName: String!
-			$lastName: String!
-			$email: String!		
-		) {
-			createAccount(
-				username: $Username
-				email: $email
-				firstName: $firstName
-				lastName: $lastName
-			)
-		}
+	mutation createAccount($username: String!, $email: String!, $firstName: String, $lastName: String) {
+		createAccount(username: $username, email: $email, firstName: $firstName, lastName: $lastName)
+	}
+`;
+
+export const CONFIRM_SECRET = gql`
+	mutation confirmSecret($secret: String!, $email: String!) {
+		confirmSecret(secret: $secret, email: $email)
 	}
 `;
