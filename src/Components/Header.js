@@ -20,38 +20,53 @@ const Header = styled.Header`
 	padding: 25px 0;
 `;
 
-
 const HeaderWrapper = styled.div`
-	width:100%;
-	max-width: ${props => props.theme.maxWidth};
-	display:flex;
-	justify-content:center;
+	width: 100%;
+	max-width: ${(props) => props.theme.maxWidth};
+	display: flex;
+	justify-content: center;
 `;
 
 const HeaderColumn = styled.div`
-	width:33%;
-	text-align:center;
+	width: 33%;
+	text-align: center;
 	&:first-child {
-		margin-right:auto;
-		text-align:left;
+		margin-right: auto;
+		text-align: left;
 	}
-	&:last-child{
-		margin-left:auto;
-		text-align:right;
+	&:last-child {
+		margin-left: auto;
+		text-align: right;
 	}
 `;
 
 const SearchInput = styled(Input)`
-	background-color:${props -> props.theme.bgColor};
-	padding:5px;
-	font-size:14px;
-	border-radius:3px;
-	height:auto;
-	text-align:center;
-	width:80%;
+	background-color: ${(props) => props.theme.bgColor};
+	padding: 5px;
+	font-size: 14px;
+	border-radius: 3px;
+	height: auto;
+	text-align: center;
+	width: 80%;
 	&:placeholder {
-		opacity:0.8;
-		font-weight:200;
+		opacity: 0.8;
+		font-weight: 200;
 	}
 `;
 
+const HeaderLink = styled(Link)`
+	&:not(:last-child) {
+		margin-right: 30px;
+	}
+`;
+
+export default () => {
+	const search = useInput('');
+	return (
+		<Header>
+			<HeaderWrapper>
+				<HeaderColumn></HeaderColumn>
+			</HeaderWrapper>
+		</Header>
+	);
+};
