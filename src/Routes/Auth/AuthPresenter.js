@@ -46,34 +46,43 @@ const Form = styled(Box)`
 	}
 `;
 
-export default ({ action, username, firstName, lastName, email, setAction, onSubmit }) => (
+export default ({ action, setAction, username, firstName, lastName, email, onSubmit, secret }) => (
 	<Wrapper>
 		<Form>
-			{action === 'logIn' ? (
+			{action === 'logIn' && (
 				<form onSubmit={onSubmit}>
-					<Input placeholder={'Email'} {...email} type="email" />
+					<Input placeholder={'Email'} value={email.value} onChange={email.onChange} type="email" />
 					<Button text={'Log in'} />
 				</form>
-			) : (
+			)}
+			{action === 'signUp' && (
 				<form onSubmit={onSubmit}>
-					<Input placeholder={'First name'} {...firstName} />
-					<Input placeholder={'Last name'} {...lastName} />
-					<Input placeholder={'Email'} {...email} type="email" />
-					<Input placeholder={'Username'} {...username} />
+					<Input placeholder={'First name'} value={firstName.value} onChange={firstName.onChange} />
+					<Input placeholder={'Last name'} value={lastName.value} onChange={lastName.onChange} />
+					<Input placeholder={'Email'} value={email.value} onChange={email.onChange} type="email" />
+					<Input placeholder={'Username'} value={username.value} onChange={username.onChange} />
 					<Button text={'Sign up'} />
 				</form>
 			)}
-		</Form>
-		<StateChanger>
-			{action === 'logIn' ? (
-				<>
-					Don't have an account? <Link onClick={() => setAction('signUp')}>Sign up</Link>
-				</>
-			) : (
-				<>
-					Have an account? <Link onClick={() => setAction('logIn')}>Log in</Link>
-				</>
+			{action === 'confirm' && (
+				<form onSubmit={onSubmit}>
+					<Input placeholder="Paste your secret" required value={secret.value} onChange={secret.onChange} />
+					<Button text={'Confirm'} />
+				</form>
 			)}
-		</StateChanger>
+		</Form>
+		{action !== 'confirm' && (
+			<StateChanger>
+				{action === 'logIn' ? (
+					<>
+						Don't have an account? <Link onClick={() => setAction('signUp')}>Sign up</Link>
+					</>
+				) : (
+					<>
+						Have an account? <Link onClick={() => setAction('logIn')}>Log in</Link>
+					</>
+				)}
+			</StateChanger>
+		)}
 	</Wrapper>
 );
